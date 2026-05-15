@@ -1,0 +1,63 @@
+﻿@using DAL
+@model Models.Course
+
+<div class="infoBlock">
+    <div>@Model.Code</div>
+    <div>Session @Model.Session</div>
+    <div>@Model.Title</div>
+</div>
+
+<div class="sectionTitle">Étudiants inscrits</div>
+
+@if (Model.Registrations.Count == 0)
+{
+    <div class="emptyMessage">Aucune inscription.</div>
+}
+else
+{
+    var years = Model.Registrations
+        .Where(r => r.Student != null)
+        .Select(r => r.Year)
+        .Distinct()
+        .OrderByDescending(y => y)
+        .ToList();
+
+    foreach (int year in years)
+    {
+        var registrations = Model.Registrations
+            .Where(r => r.Year == year && r.Student != null)
+            .OrderBy(r => r.Student.LastName)
+            .ThenBy(r => r.Student.FirstName)
+            .ToList();
+
+        if (registrations.Count > 0)
+        {
+            <details id="course_registration_details_@year" open>
+                <summary>
+                    Cohorte @year
+                    @{
+                        var allocation = DB.Instance.Allocations.ToList()
+                            .FirstOrDefault(a => a.CourseId == Model.Id && a.Year == year);
+
+                        if (allocation != null && allocation.Teacher != null)
+                        {
+                            <span> - </span>
+                            <a href="@Url.Action("Details", "Teachers", new { id = allocation.Teacher.Id })">
+                                @allocation.Teacher.FullName
+                            </a>
+                        }
+                    }
+                </summary>
+
+                @foreach (var registration in registrations)
+                {
+                    <div class="itemLine">
+                        <a href="@Url.Action("Details", "Students", new { id = registration.Student.Id })">
+                            @registration.Student.Code @registration.Student.LastName @registration.Student.FirstName
+                        </a>
+                    </div>
+                }
+            </details>
+        }
+    }
+}

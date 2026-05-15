@@ -1,0 +1,25 @@
+﻿@model Models.Course
+
+@{
+    ViewBag.Title = "Ajout d'un cours";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Creating = true;
+}
+
+<div class="pageHeader">
+    <div class="pageTitle">
+        <a href="@Url.Action("Index", "Students")" title="Accueil">
+            <span class="mainRedIcon fa fa-user"></span>
+        </a>
+
+        <span>Ajout d'un cours</span>
+    </div>
+
+    <div class="pageCommands">
+        <a href="@Url.Action("Index", "Courses")" title="Annuler">
+            <span class="icon fa fa-times-square"></span>
+        </a>
+    </div>
+</div>
+
+@Html.Partial("CourseForm", Model)

@@ -1,0 +1,70 @@
+@{
+    ViewBag.PageTitle = "À propos";
+    ViewBag.Title = "À propos";
+
+    string controller = ViewContext.RouteData.Values["controller"].ToString();
+}
+
+<div class="detailsHeader">
+    <a href="@Url.Action("Index", controller)" title="Retour">
+        <i class="cmdIcon fa fa-arrow-left"></i>
+    </a>
+</div>
+
+<h2>Application web Gestion 420</h2>
+
+<dl>
+    <dt>
+        Auteur
+    </dt>
+
+    <dd>
+        Adam Rhedhbane <br />
+        Ismail Rhedhbane <br />
+        Étudiants <br />
+        Département d'informatique <br />
+        Collège Lionel-Groulx <br />
+    </dd>
+
+    <dt>
+        Description
+    </dt>
+
+    <dd>
+        Application Web transactionnelle avec authentification permettant de gérer les étudiants,
+        les cours, les professeurs, les inscriptions et les allocations de cours selon la session courante.
+    </dd>
+
+    <dt>
+        Fonctionnalités
+    </dt>
+
+    <dd>
+        Gestion des étudiants <br />
+        Gestion des cours <br />
+        Gestion des professeurs <br />
+        Gestion des inscriptions <br />
+        Gestion des allocations <br />
+        Réglage de l'année et de la session courante <br />
+        Contrôle des accès selon le rôle de l'utilisateur <br />
+    </dd>
+
+    <dt>
+        Courriel
+    </dt>
+
+    <dd>
+        <a href="mailto:202163536@edu.clg.qc.ca">Adam: 202163536@edu.clg.qc.ca</a>
+    </dd>
+    <dd>
+        <a href="mailto:201853290@edu.clg.qc.ca">Ismail: 201853290@edu.clg.qc.ca</a>
+    </dd>
+
+    <dt>
+        Date de mise à jour
+    </dt>
+
+    <dd>
+        Mai 2026
+    </dd>
+</dl>

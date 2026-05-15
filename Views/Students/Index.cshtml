@@ -1,0 +1,85 @@
+﻿@using Models
+
+@{
+    ViewBag.Title = "Étudiants";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string searchString = (Session["SearchString"] ?? "").ToString();
+    int selectedYear = (int)(Session["SelectedStudentYear"] ?? 0);
+
+    List<int> years = Session["StudentsYearsList"] as List<int>;
+    if (years == null)
+    {
+        years = new List<int>();
+    }
+}
+
+<div class="searchBar">
+    <input type="text"
+           id="searchString"
+           value="@searchString"
+           placeholder="Recherche..." />
+
+    <select id="selectedYear">
+        <option value="0">Toutes les années</option>
+
+        @foreach (int year in years)
+        {
+            if (selectedYear == year)
+            {
+                <option value="@year" selected>@year</option>
+            }
+            else
+            {
+                <option value="@year">@year</option>
+            }
+        }
+    </select>
+</div>
+
+<div id="studentsPanel"></div>
+
+@section Scripts {
+    <script>
+        let studentsPanel = null;
+
+        function highlightSearch() {
+            let text = $("#searchString").val();
+
+            if (text != undefined && text.length > 0) {
+                $(".studentCode, .studentName").each(function () {
+                    highlight(text, this);
+                });
+            }
+        }
+
+        function setSearch() {
+            $.ajax({
+                url: "@Url.Action("SetSearch", "Students")",
+                type: "GET",
+                data: {
+                    searchString: $("#searchString").val(),
+                    selectedYear: $("#selectedYear").val()
+                },
+                success: function () {
+                    studentsPanel.refresh();
+                }
+            });
+        }
+
+        $("#searchString").on("keyup", function () {
+            setSearch();
+        });
+
+        $("#selectedYear").change(function () {
+            setSearch();
+        });
+
+        studentsPanel = new AutoRefreshedPanel(
+            "studentsPanel",
+            "@Url.Action("GetStudents", "Students")",
+            5,
+            highlightSearch
+        );
+    </script>
+}

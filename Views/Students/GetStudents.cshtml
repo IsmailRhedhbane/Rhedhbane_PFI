@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Models.Student>
+
+@{
+    List<int> yearsList = Session["StudentsYearsList"] as List<int>;
+
+    if (yearsList == null)
+    {
+        yearsList = Model.Select(s => s.Year).Distinct().OrderByDescending(y => y).ToList();
+    }
+}
+
+@if (!Model.Any())
+{
+    <div class="emptyMessage">
+        Aucun étudiant trouvé.
+    </div>
+}
+else
+{
+    foreach (int year in yearsList.OrderByDescending(y => y))
+    {
+        var students = Model.Where(s => s.Year == year)
+                            .OrderBy(s => s.LastName)
+                            .ThenBy(s => s.FirstName)
+                            .ToList();
+
+        if (students.Count > 0)
+        {
+            <details id="student_details_@year" open>
+                <summary>Cohorte @year</summary>
+
+                @foreach (var item in students)
+                {
+                    <div class="StudentListLayout">
+                        <a href="@Url.Action("Details", "Students", new { id = item.Id })">
+                            <span class="studentCode">@item.Code</span>
+                            <span class="studentName">@item.LastName @item.FirstName</span>
+                        </a>
+                    </div>
+                }
+            </details>
+        }
+    }
+}

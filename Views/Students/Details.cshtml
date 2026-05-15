@@ -1,0 +1,50 @@
+﻿@using Models
+@model Models.Student
+
+@{
+    ViewBag.Title = "Étudiant - Détails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Access access = Models.User.ConnectedUser != null ? Models.User.ConnectedUser.Access : Access.Anonymous;
+    bool canWrite = access == Access.Write || access == Access.Admin;
+}
+
+<div class="pageHeader">
+    <div class="pageTitle">
+        <a href="@Url.Action("Index", "Students")" title="Accueil">
+            <span class="mainRedIcon fa fa-user"></span>
+        </a>
+        <span>Étudiant - Détails</span>
+    </div>
+
+    <div class="pageCommands">
+        @if (canWrite)
+        {
+            <a href="@Url.Action("Edit", "Students", new { id = Model.Id })" title="Modifier">
+                <span class="icon fa fa-edit"></span>
+            </a>
+
+            <a href="@Url.Action("Delete", "Students", new { id = Model.Id })"
+               onclick="return confirm('Effacer cet étudiant et toutes ses inscriptions?');"
+               title="Supprimer">
+                <span class="icon fa fa-trash"></span>
+            </a>
+        }
+
+        <a href="@Url.Action("Index", "Students")" title="Retour">
+            <span class="icon fa fa-times-square"></span>
+        </a>
+    </div>
+</div>
+
+<div id="studentDetailsPanel"></div>
+
+@section Scripts {
+    <script>
+        let studentDetailsPanel = new AutoRefreshedPanel(
+            "studentDetailsPanel",
+            "@Url.Action("GetStudentDetails", "Students")",
+            5
+        );
+    </script>
+}

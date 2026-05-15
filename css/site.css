@@ -1,0 +1,1301 @@
+
+.unselected {
+    text-decoration: none;
+    color: lightgray;
+}
+
+    .unselected:hover {
+        color: aqua;
+    }
+
+label {
+    margin-top: 8px;
+}
+
+a, .noDecoration {
+    color: black;
+    text-decoration: none;
+}
+
+form {
+    max-width: 10in;
+    margin: auto;
+}
+
+    form label {
+        font-weight: bold;
+    }
+
+    form input {
+        margin-bottom: 8px;
+    }
+
+
+.detailsPanel dl {
+
+    margin: auto;
+
+    font-size: 1em;
+}
+
+.detailsPanel dt {
+    color: gray;
+}
+
+.detailsPanel dd {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+fieldset {
+    border: 1px solid #ddd !important;
+    border-radius: 6px !important;
+    padding: 8px !important;
+    padding-top: 16px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom:6px;
+}
+
+legend {
+    font-size: 1.0em;
+    font-weight: bold;
+    color: #777;
+    float: none;
+    width: inherit;
+    padding: 0 6px;
+    margin-left: 6px;
+    margin-bottom: -12px;
+    transform: translate(0,-1px);
+    text-align: left;
+}
+
+input, textarea {
+    margin: 0px !important;
+}
+
+label {
+    color: #777;
+}
+
+details {
+    /* source : https://nerdy.dev/open-and-close-transitions-for-the-details-element*/
+
+    @media (prefers-reduced-motion: no-preference) {
+        interpolate-size: allow-keywords;
+    }
+
+
+    &::details-content {
+        opacity: 0;
+        block-size: 0;
+        overflow-y: clip;
+        transition: content-visibility 1s allow-discrete, opacity 0.75s, block-size 0.75s;
+    }
+
+    &[open]::details-content {
+        opacity: 1;
+        block-size: auto;
+    }
+
+    & div {
+        margin-left: 6px;
+    }
+}
+summary {
+    background: lightgray;
+    padding-left: 8px;
+    height: 34px;
+    border: 1px solid white;
+    border-radius: 6px;
+    font-weight: bold;
+
+
+    &::marker {
+        font-size: 20px;
+    }
+}
+
+.actionTitle {
+    font-size:1.3rem;
+}
+
+.highlight {
+    background-color: yellow;
+}
+.loginPage {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 60px;
+    min-height: 70vh;
+}
+
+.loginBox {
+    width: 420px;
+    max-width: 95%;
+    background: white;
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.15);
+}
+
+    .loginBox h2 {
+        margin-top: 0;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+.formGroup {
+    margin-bottom: 16px;
+}
+
+    .formGroup label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+    }
+
+.form-control {
+    width: 100%;
+    padding: 9px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.btn {
+    border: none;
+    border-radius: 6px;
+    padding: 10px 16px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: #1f6feb;
+    color: white;
+    width: 100%;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    font-weight: bold;
+}
+
+    .message.success {
+        background: #d7f5df;
+        color: #176b2c;
+    }
+
+    .message.error {
+        background: #ffd9d9;
+        color: #9d1c1c;
+    }
+
+.testAccounts {
+    margin-top: 22px;
+    padding-top: 14px;
+    border-top: 1px solid #ddd;
+    font-size: 0.9em;
+}
+.searchBar {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+    .searchBar input {
+        flex: 1;
+    }
+
+    .searchBar select {
+        width: 220px;
+    }
+
+.btn-secondary {
+    background: #ddd;
+    color: black;
+}
+
+.alert {
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.alert-info {
+    background: #e7f3ff;
+    color: #084f88;
+}
+
+.StudentListLayout span {
+    margin-right: 10px;
+}
+
+.studentEmail {
+    color: #555;
+    font-size: 0.9em;
+}
+
+.studentPhone {
+    color: #777;
+    font-size: 0.9em;
+}
+
+@media screen and (max-width: 700px) {
+    .searchBar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+        .searchBar select {
+            width: 100%;
+        }
+
+    .StudentListLayout {
+        height: auto;
+        padding: 8px;
+    }
+
+        .StudentListLayout a > div {
+            flex-direction: column;
+            align-items: flex-start !important;
+            gap: 2px !important;
+        }
+}
+.TeacherListLayout {
+    padding: 6px 8px;
+    border-bottom: 1px solid #eee;
+}
+
+    .TeacherListLayout a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+.teacherRow {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.teacherAvatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    background-color: #ddd;
+    flex-shrink: 0;
+}
+
+.teacherBigAvatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 8px;
+    background-position: center;
+    background-size: cover;
+    background-color: #ddd;
+    flex-shrink: 0;
+}
+
+.teacherCode {
+    font-weight: bold;
+    color: #1f6feb;
+    min-width: 130px;
+}
+
+.teacherName {
+    min-width: 160px;
+}
+
+.teacherEmail {
+    color: #555;
+    font-size: 0.9em;
+}
+
+.teacherPhone {
+    color: #777;
+    font-size: 0.9em;
+}
+
+.teacherDetailsHeader {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.avatarPreview {
+    width: 180px;
+    height: 180px;
+    margin-top: 12px;
+    border-radius: 8px;
+    background-position: center;
+    background-size: cover;
+    background-color: #ddd;
+}
+
+@media screen and (max-width: 700px) {
+    .teacherRow {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+    }
+
+    .teacherCode,
+    .teacherName {
+        min-width: 0;
+    }
+
+    .teacherDetailsHeader {
+        flex-direction: column;
+    }
+}
+
+
+.studentDetailsHeader {
+    height: 46px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 5px !important;
+    background-color: white !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 8px !important;
+    box-sizing: border-box !important;
+    margin-bottom: 6px !important;
+}
+
+.studentDetailsTitle {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+}
+
+.studentDetailsCommands {
+    display: flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+}
+
+    .studentDetailsCommands a {
+        text-decoration: none !important;
+    }
+
+.studentInfoBlock {
+    padding: 12px 8px !important;
+    border-bottom: 1px solid #ddd !important;
+}
+
+    .studentInfoBlock div {
+        margin-bottom: 7px !important;
+        font-size: 14px !important;
+        font-weight: bold !important;
+    }
+
+    .studentInfoBlock .fa {
+        width: 18px !important;
+        color: black !important;
+    }
+
+.sectionSubTitle {
+    font-size: 20px !important;
+    font-weight: normal !important;
+    margin: 14px 0 8px 6px !important;
+}
+
+.registrationLine {
+    padding: 3px 8px 3px 20px !important;
+    font-size: 16px !important;
+}
+
+    .registrationLine a {
+        color: blue !important;
+        text-decoration: none !important;
+    }
+
+        .registrationLine a:hover {
+            text-decoration: underline !important;
+        }
+
+.sessionNumber {
+    color: gray !important;
+    margin-right: 4px !important;
+}
+
+.emptyMessage {
+    padding: 8px !important;
+}
+.studentInfoBlock {
+    padding: 12px 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+    .studentInfoBlock div {
+        margin-bottom: 7px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .studentInfoBlock .fa {
+        width: 18px;
+        color: black;
+    }
+
+.studentSectionTitle {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 14px 0 8px 6px;
+}
+
+.registrationLine {
+    padding: 3px 8px 3px 20px;
+    font-size: 16px;
+}
+
+    .registrationLine a {
+        color: blue;
+        text-decoration: none;
+    }
+
+        .registrationLine a:hover {
+            text-decoration: underline;
+        }
+
+.sessionNumber {
+    color: gray;
+    margin-right: 4px;
+}
+
+.emptyMessage {
+    padding: 8px;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+.appFrame {
+    width: 500px;
+    max-width: calc(100% - 16px);
+    margin: 8px;
+}
+
+
+.pageHeader {
+    height: 46px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    margin-bottom: 6px;
+    box-sizing: border-box;
+}
+
+.pageTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.pageCommands {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .pageCommands a,
+    .pageCommands span {
+        text-decoration: none;
+    }
+
+.mainRedIcon {
+    color: #e00034;
+    font-size: 30px;
+}
+
+.icon {
+    color: #0b63ce;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+    .icon:hover {
+        color: #003f91;
+    }
+
+
+.tabLink {
+    color: lightgray;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+    .tabLink.activeTab {
+        color: #222;
+        font-weight: bold;
+    }
+
+
+.sessionFooter {
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 6px;
+    background: white;
+    font-size: 13px;
+}
+
+.searchBar {
+    display: none;
+    margin: 5px 0;
+    gap: 6px;
+}
+
+    .searchBar input,
+    .searchBar select {
+        height: 32px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 4px 8px;
+        box-sizing: border-box;
+    }
+
+    .searchBar input {
+        flex: 1;
+    }
+
+    .searchBar select {
+        width: 160px;
+    }
+
+    .searchBar button {
+        display: none !important;
+    }
+
+details {
+    margin-bottom: 4px;
+}
+
+summary {
+    background: #ccc;
+    padding: 5px 8px;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 22px;
+}
+
+    summary::marker {
+        font-size: 16px;
+    }
+
+.StudentListLayout,
+.CourseListLayout,
+.TeacherListLayout {
+    padding: 3px 8px 3px 22px;
+    border-bottom: none;
+}
+
+    .StudentListLayout a,
+    .CourseListLayout a,
+    .TeacherListLayout a {
+        color: black;
+        text-decoration: none;
+    }
+
+.studentCode,
+.courseCode,
+.teacherCode {
+    color: blue;
+    margin-right: 8px;
+    font-weight: normal;
+}
+
+.studentName,
+.courseTitle,
+.teacherName {
+    color: black;
+    font-size: 16px;
+}
+
+.studentEmail,
+.studentPhone,
+.teacherEmail,
+.teacherPhone {
+    display: none !important;
+}
+
+
+.infoBlock {
+    padding: 12px 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+    .infoBlock div {
+        margin-bottom: 7px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .infoBlock .fa {
+        width: 18px;
+        color: black;
+    }
+
+.sectionTitle {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 14px 0 8px 6px;
+}
+
+.itemLine {
+    padding: 3px 8px 3px 20px;
+    font-size: 16px;
+}
+
+    .itemLine a {
+        color: blue;
+        text-decoration: none;
+    }
+
+        .itemLine a:hover {
+            text-decoration: underline;
+        }
+
+.sessionNumber {
+    color: gray;
+    margin-right: 4px;
+}
+
+.emptyMessage {
+    padding: 8px;
+}
+
+
+form {
+    max-width: 100%;
+    margin: 0;
+}
+
+fieldset {
+    border: 1px solid #ddd !important;
+    border-radius: 6px !important;
+    padding: 8px !important;
+    padding-top: 12px !important;
+    margin-bottom: 6px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+legend {
+    font-size: 1em;
+    font-weight: bold;
+    color: #777;
+    float: none;
+    width: auto;
+    padding: 0 6px;
+    margin-left: 6px;
+    margin-bottom: -8px;
+}
+
+label {
+    color: #777;
+    font-weight: bold;
+}
+
+.form-control,
+input,
+select,
+textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 7px;
+    box-sizing: border-box;
+}
+
+.btn,
+.btn-primary,
+.btn-secondary {
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #0b63ce;
+    color: white;
+}
+
+.btn-secondary {
+    background: #ddd;
+    color: black;
+}
+
+
+.teacherRow {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.teacherAvatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    background-color: #ddd;
+}
+
+.teacherBigAvatar,
+.avatarPreview {
+    width: 220px;
+    height: 220px;
+    border-radius: 6px;
+    background-position: center;
+    background-size: cover;
+    background-color: #ddd;
+    margin-top: 10px;
+}
+
+
+.highlight,
+mark {
+    background: yellow;
+    padding: 0;
+}
+
+
+@media screen and (max-width: 560px) {
+    .appFrame {
+        width: auto;
+        max-width: none;
+        margin: 4px;
+    }
+
+    .pageHeader {
+        height: auto;
+        min-height: 46px;
+    }
+
+    .tabLink {
+        font-size: 16px;
+    }
+
+    .searchBar {
+        flex-direction: column;
+    }
+
+        .searchBar select {
+            width: 100%;
+        }
+}
+/* =========================================================
+   Login style Wikimedia / prof
+   ========================================================= */
+
+.loginPanel {
+    width: min(100%, 420px);
+    max-width: calc(100% - 16px);
+    margin: 40px auto;
+}
+
+.loginForm {
+    max-width: 100%;
+    margin: 0;
+}
+
+.loginCommands {
+    display: flex;
+    justify-content: flex-end;
+    margin: 8px 0;
+}
+
+.roundIconButton {
+    border: none;
+    background: none;
+    color: #0b63ce;
+    font-size: 25px;
+    cursor: pointer;
+    padding: 0;
+}
+
+    .roundIconButton:hover {
+        color: #003f91;
+    }
+
+.testAccountsCompact {
+    padding: 10px 8px;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.message {
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+    .message.success {
+        background: #d7f5df;
+        color: #176b2c;
+    }
+
+    .message.error {
+        background: #ffd9d9;
+        color: #9d1c1c;
+    }
+/* =========================================================
+   Corrections finales PFI 420-KBD
+   ========================================================= */
+
+.appFrame {
+    width: min(100%, 760px) !important;
+    max-width: calc(100% - 16px) !important;
+    margin: 8px auto !important;
+}
+
+.pageHeader {
+    min-height: 46px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 5px !important;
+    background: white !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0 8px !important;
+    margin-bottom: 6px !important;
+    box-sizing: border-box !important;
+}
+
+.pageTitle {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    flex-wrap: nowrap !important;
+    min-width: 0 !important;
+}
+
+.mainRedIcon {
+    color: #e00034 !important;
+    font-size: 30px !important;
+    margin-right: 6px !important;
+}
+
+.tabLink {
+    color: lightgray !important;
+    text-decoration: none !important;
+    font-size: clamp(15px, 2.2vw, 18px) !important;
+    font-weight: normal !important;
+}
+
+.tabLink.activeTab {
+    color: #222 !important;
+    font-weight: bold !important;
+}
+
+.pageCommands {
+    display: flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    flex-shrink: 0 !important;
+}
+
+.pageCommands a {
+    text-decoration: none !important;
+}
+
+.icon {
+    color: #0b63ce !important;
+    font-size: 24px !important;
+    cursor: pointer !important;
+}
+
+.icon:hover {
+    color: #003f91 !important;
+}
+
+.actionTitle {
+    display: none !important;
+}
+
+.sessionFooter {
+    margin-top: 5px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 5px !important;
+    padding: 6px !important;
+    background: white !important;
+    font-size: 13px !important;
+}
+
+.searchBar {
+    display: none;
+    margin: 5px 0 !important;
+    gap: 6px !important;
+}
+
+.searchBar input {
+    flex: 1 !important;
+    min-width: 160px !important;
+}
+
+.searchBar select {
+    width: 170px !important;
+}
+
+.searchBar button {
+    display: none !important;
+}
+
+.StudentListLayout,
+.CourseListLayout,
+.TeacherListLayout {
+    padding: 3px 8px 3px 22px !important;
+    border-bottom: none !important;
+}
+
+.StudentListLayout a,
+.CourseListLayout a,
+.TeacherListLayout a {
+    color: black !important;
+    text-decoration: none !important;
+}
+
+.studentCode,
+.courseCode,
+.teacherCode {
+    color: blue !important;
+    margin-right: 8px !important;
+    font-weight: normal !important;
+}
+
+.studentName,
+.courseTitle,
+.teacherName {
+    color: black !important;
+    font-size: 16px !important;
+}
+
+.studentEmail,
+.studentPhone,
+.teacherEmail,
+.teacherPhone {
+    display: none !important;
+}
+
+.infoBlock,
+.studentInfoBlock {
+    padding: 12px 8px !important;
+    border-bottom: 1px solid #ddd !important;
+}
+
+.infoBlock div,
+.studentInfoBlock div {
+    margin-bottom: 7px !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+}
+
+.infoBlock .fa,
+.studentInfoBlock .fa {
+    width: 18px !important;
+    color: black !important;
+}
+
+.sectionTitle,
+.studentSectionTitle,
+.sectionSubTitle {
+    font-size: 20px !important;
+    font-weight: normal !important;
+    margin: 14px 0 8px 6px !important;
+}
+
+.itemLine,
+.registrationLine {
+    padding: 3px 8px 3px 20px !important;
+    font-size: 16px !important;
+}
+
+.itemLine a,
+.registrationLine a {
+    color: blue !important;
+    text-decoration: none !important;
+}
+
+.itemLine a:hover,
+.registrationLine a:hover {
+    text-decoration: underline !important;
+}
+
+.sessionNumber {
+    color: gray !important;
+    margin-right: 4px !important;
+}
+
+.emptyMessage {
+    padding: 8px !important;
+}
+
+.teacherSmallAvatar {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-color: #ddd !important;
+    margin-top: 12px !important;
+}
+
+.teacherBigAvatar,
+.avatarPreview {
+    width: 220px !important;
+    height: 220px !important;
+    border-radius: 6px !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-color: #ddd !important;
+    margin-top: 10px !important;
+}
+
+.selectionsGrid {
+    display: flex !important;
+    flex-flow: row !important;
+    gap: 6px !important;
+}
+
+.selectionsGrid select {
+    flex: 1 !important;
+    min-width: 0 !important;
+}
+
+@media screen and (max-width: 560px) {
+    .appFrame {
+        width: auto !important;
+        max-width: none !important;
+        margin: 4px !important;
+    }
+
+    .pageHeader {
+        padding: 6px 8px !important;
+    }
+
+    .mainRedIcon {
+        font-size: 26px !important;
+    }
+
+    .icon {
+        font-size: 21px !important;
+    }
+
+    .searchBar {
+        flex-direction: column !important;
+    }
+
+    .searchBar select {
+        width: 100% !important;
+    }
+
+    .selectionsGrid {
+        flex-flow: column !important;
+    }
+
+    .HorSelectionsCMD {
+        display: none !important;
+    }
+
+    .VerSelectionsCMD {
+        display: flex !important;
+    }
+}
+.formCommands {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.roundIconButton {
+    border: none;
+    background: none;
+    color: #0b63ce;
+    font-size: 25px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.roundIconButton:hover {
+        color: #003f91;
+    }
+.avatarPreview {
+    width: 180px;
+    height: 180px;
+    border-radius: 6px;
+    background-position: center;
+    background-size: cover;
+    background-color: #ddd;
+    margin-top: 8px;
+}
+.teacherInfoBlock {
+    padding: 12px 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+    .teacherInfoBlock div {
+        margin-bottom: 7px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .teacherInfoBlock .fa {
+        width: 18px;
+        color: black;
+    }
+
+.teacherSmallAvatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    background-color: #ddd;
+    margin-top: 18px;
+}
+.sessionFooterLink {
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+    .sessionFooterLink:hover {
+        text-decoration: underline;
+    }
+
+.currentSessionMessage {
+    color: dodgerblue;
+    font-size: 13px;
+    padding: 6px;
+}
+
+.radioLine {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 8px 0;
+}
+
+    .radioLine input {
+        width: auto;
+    }
+.sessionFooterLink {
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+    .sessionFooterLink:hover {
+        text-decoration: underline;
+    }
+.cmdIcon {
+    font-size: 1.5rem;
+    color: rgb(0, 87, 204);
+    margin-right: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+    .cmdIcon:hover {
+        color: rgb(103, 165, 247);
+    }
+
+.menuIcon {
+    font-size: 1.2rem;
+    text-align: center;
+    color: darkgray;
+}
+
+.item-layout {
+    display: grid !important;
+    grid-template-columns: 40px auto !important;
+    align-items: center;
+    cursor: pointer;
+}
+
+    .item-layout a {
+        text-decoration: none;
+    }
+.about-page {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.about-card {
+    max-width: 800px;
+    width: 100%;
+    background: white;
+    border-radius: 14px;
+    padding: 32px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+    .about-card h1 {
+        color: #1f2937;
+        margin-bottom: 10px;
+    }
+
+    .about-card h2 {
+        color: dodgerblue;
+        margin-bottom: 20px;
+    }
+
+    .about-card p,
+    .about-card li {
+        font-size: 1.05rem;
+    }
+.detailsHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+    .detailsHeader a {
+        text-decoration: none;
+    }
+
+    .detailsHeader .cmdIcon {
+        font-size: 1.6rem;
+        color: dodgerblue;
+        cursor: pointer;
+    }
+
+        .detailsHeader .cmdIcon:hover {
+            color: rgb(103, 165, 247);
+        }

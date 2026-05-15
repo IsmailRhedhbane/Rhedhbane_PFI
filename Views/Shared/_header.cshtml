@@ -1,0 +1,165 @@
+﻿@using Models
+
+@{
+    string controller = ViewContext.RouteData.Values["controller"].ToString();
+    string action = ViewContext.RouteData.Values["action"].ToString();
+
+    User connectedUser = Models.User.ConnectedUser;
+    bool connected = connectedUser != null;
+
+    Access access = connected ? connectedUser.Access : Access.View;
+    bool canWrite = access == Access.Write || access == Access.Admin;
+    bool isAdmin = access == Access.Admin;
+
+    bool isStudents = controller == "Students";
+    bool isCourses = controller == "Courses";
+    bool isTeachers = controller == "Teachers";
+
+    string createController = "";
+
+    if (isStudents)
+    {
+        createController = "Students";
+    }
+    else if (isCourses)
+    {
+        createController = "Courses";
+    }
+    else if (isTeachers)
+    {
+        createController = "Teachers";
+    }
+
+    bool showAdd = canWrite && createController != "" && action == "Index";
+    bool showSearch = action == "Index";
+}
+
+<div class="pageHeader">
+    <div class="pageTitle">
+        <a href="@Url.Action("Index", "Students")" title="Accueil">
+            <span class="mainRedIcon fa fa-user"></span>
+        </a>
+
+        <a class="tabLink @(isStudents ? "activeTab" : "")"
+           href="@Url.Action("Index", "Students")">
+            Étudiants
+        </a>
+
+        <a class="tabLink @(isCourses ? "activeTab" : "")"
+           href="@Url.Action("Index", "Courses")">
+            Cours
+        </a>
+
+        <a class="tabLink @(isTeachers ? "activeTab" : "")"
+           href="@Url.Action("Index", "Teachers")">
+            Profs
+        </a>
+    </div>
+
+    <div class="pageCommands">
+        @if (showAdd)
+        {
+            <a href="@Url.Action("Create", createController)" title="Ajouter">
+                <span class="icon fa fa-plus-circle"></span>
+            </a>
+        }
+
+        @if (showSearch)
+        {
+            <span id="toggleSearch" class="icon fa fa-search" title="Recherche"></span>
+        }
+
+    <div id="menu" class="dropdown ms-auto">
+        <div data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="cmdIcon fa fa-bars" title="Menu"></i>
+        </div>
+
+        <div class="dropdown-menu noselect" id="DDMenu" style="width:300px !important">
+            @if (connected)
+            {
+                <div class="dropdown-item item-layout">
+                    <i class="menuIcon fa fa-address-card"></i>
+                    <a href="@Url.Action("EditProfil", "Accounts")">Profil...</a>
+                </div>
+
+                <div class="dropdown-item item-layout">
+                    <i class="menuIcon fa fa-sign-out"></i>
+                    <a href="@Url.Action("Logout", "Accounts")">Déconnexion...</a>
+                </div>
+            }
+            else
+            {
+                <div class="dropdown-item item-layout">
+                    <i class="menuIcon fa fa-sign-in-alt"></i>
+                    <a href="@Url.Action("Login", "Accounts")">Connexion...</a>
+                </div>
+
+                <div class="dropdown-item item-layout">
+                    <i class="menuIcon fa fa-user-plus"></i>
+                    <a href="@Url.Action("Register", "Accounts")">S'enregistrer...</a>
+                </div>
+            }
+
+            @if (isAdmin)
+            {
+                <div class="dropdown-divider"></div>
+
+                <div class="dropdown-item item-layout">
+                    <i class="menuIcon fa fa-users"></i>
+                    <a href="@Url.Action("ManageUsers", "Accounts")">
+                        Gestion des usagers...
+                    </a>
+                </div>
+
+                <div class="dropdown-item item-layout">
+                    <i class="menuIcon fa fa-calendar-days"></i>
+                    <a href="@Url.Action("LoginsJournal", "Accounts")">
+                        Historique de connexions...
+                    </a>
+                </div>
+
+                <div class="dropdown-item item-layout">
+                    <i class="menuIcon fa fa-gear"></i>
+                    <a href="@Url.Action("EventsJournal", "Accounts")">
+                        Journal d'activités...
+                    </a>
+                </div>
+            }
+
+            <div class="dropdown-divider"></div>
+
+            <div class="dropdown-item item-layout">
+                <i class="menuIcon fa fa-user-graduate"></i>
+                <a href="@Url.Action("Index", "Students")">Étudiants...</a>
+            </div>
+
+            <div class="dropdown-item item-layout">
+                <i class="menuIcon fa fa-book"></i>
+                <a href="@Url.Action("Index", "Courses")">Cours...</a>
+            </div>
+
+            <div class="dropdown-item item-layout">
+                <i class="menuIcon fa fa-chalkboard-teacher"></i>
+                <a href="@Url.Action("Index", "Teachers")">Professeurs...</a>
+            </div>
+
+            @if (canWrite && createController != "")
+            {
+                <div class="dropdown-divider"></div>
+
+                <div class="dropdown-item item-layout">
+                    <i class="menuIcon fa fa-plus-circle"></i>
+                    <a href="@Url.Action("Create", createController)">Ajouter...</a>
+                </div>
+            }
+
+            <div class="dropdown-divider"></div>
+
+            <div class="dropdown-item item-layout">
+                <i class="menuIcon fa fa-info-circle"></i>
+                <a href="@Url.Action("About", controller)">À propos...</a>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>

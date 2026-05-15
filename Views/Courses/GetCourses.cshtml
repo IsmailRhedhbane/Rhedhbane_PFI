@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Models.Course>
+
+@if (!Model.Any())
+{
+    <div class="emptyMessage">
+        Aucun cours trouvé.
+    </div>
+}
+else
+{
+    var sessions = Model
+        .Select(c => c.Session)
+        .Distinct()
+        .OrderBy(s => s)
+        .ToList();
+
+    foreach (int session in sessions)
+    {
+        var courses = Model
+            .Where(c => c.Session == session)
+            .OrderBy(c => c.Code)
+            .ToList();
+
+        if (courses.Count > 0)
+        {
+            <details id="course_details_@session" open>
+                <summary>Session @session</summary>
+
+                @foreach (var course in courses)
+                {
+                    <div class="CourseListLayout">
+                        <a href="@Url.Action("Details", "Courses", new { id = course.Id })">
+                            <span class="courseCode">@course.Code</span>
+                            <span class="courseTitle">@course.Title</span>
+                        </a>
+                    </div>
+                }
+            </details>
+        }
+    }
+}

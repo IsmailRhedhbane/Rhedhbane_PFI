@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Models.Teacher>
+
+@if (!Model.Any())
+{
+    <div class="emptyMessage">
+        Aucun enseignant trouvé.
+    </div>
+}
+else
+{
+    foreach (var teacher in Model)
+    {
+        <div class="TeacherListLayout">
+            <a href="@Url.Action("Details", "Teachers", new { id = teacher.Id })">
+                <div class="teacherRow">
+                    <div class="teacherAvatar"
+                         style="background-image:url('@Url.Content(string.IsNullOrWhiteSpace(teacher.Avatar) ? "~/App_Assets/teachers/no_avatar.png" : teacher.Avatar)')">
+                    </div>
+
+                    <span class="teacherCode">@teacher.Code</span>
+                    <span class="teacherName">@teacher.LastName @teacher.FirstName</span>
+                </div>
+            </a>
+        </div>
+    }
+}

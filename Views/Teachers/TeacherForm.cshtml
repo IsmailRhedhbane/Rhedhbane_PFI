@@ -1,0 +1,90 @@
+﻿@model Models.Teacher
+
+@{
+    bool creating = ViewBag.Creating ?? false;
+    string action = creating ? "Create" : "Edit";
+}
+
+@using (Html.BeginForm(action, "Teachers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Code)
+    @Html.HiddenFor(model => model.Avatar)
+
+    <details id="teacher_form_details_information" open>
+        <summary>Informations - @Model.Code</summary>
+
+        <fieldset>
+            <legend>Identité</legend>
+
+            <label>Code</label>
+            <input type="text" value="@Model.Code" class="form-control" readonly />
+
+            <label>Prénom</label>
+            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", required = "required" })
+
+            <label>Nom</label>
+            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", required = "required" })
+
+            <label>Date d'embauche</label>
+            <input type="date"
+                   name="StartDate"
+                   value="@Model.StartDate.ToString("yyyy-MM-dd")"
+                   class="form-control"
+                   required />
+
+            <label>Courriel</label>
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", type = "email", placeholder = "Prenom.Nom@clg.qc.ca" })
+
+            <label>Téléphone</label>
+            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", required = "required" })
+
+            <label>Avatar</label>
+
+            <input type="file"
+                   name="AvatarFile"
+                   accept="image/*"
+                   class="form-control" />
+
+            <div class="avatarPreview"
+                 style="background-image:url('@Url.Content(string.IsNullOrWhiteSpace(Model.Avatar) ? "~/App_Assets/Teachers/no_avatar.png" : Model.Avatar)')">
+            </div>
+        </fieldset>
+    </details>
+
+    if (!creating)
+    {
+        <details id="teacher_form_details_allocations" open>
+            <summary>Allocations - @Models.NextSession.ShortCaption</summary>
+
+            <fieldset>
+                <legend>Cours assignés</legend>
+
+                @Helper.SelectionLists(
+                    "selectedCoursesId",
+                    (System.Web.Mvc.SelectList)ViewBag.Allocations,
+                    (System.Web.Mvc.SelectList)ViewBag.Courses
+                )
+            </fieldset>
+        </details>
+    }
+
+    <div class="formCommands">
+        <button type="submit" class="roundIconButton" title="Enregistrer">
+            <span class="fa fa-check-circle"></span>
+        </button>
+
+        @if (creating)
+        {
+            <a href="@Url.Action("Index", "Teachers")" title="Annuler">
+                <span class="icon fa fa-times-circle"></span>
+            </a>
+        }
+        else
+        {
+            <a href="@Url.Action("Details", "Teachers", new { id = Model.Id })" title="Annuler">
+                <span class="icon fa fa-times-circle"></span>
+            </a>
+        }
+    </div>
+}

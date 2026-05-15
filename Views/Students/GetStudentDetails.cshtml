@@ -1,0 +1,77 @@
+﻿@model Models.Student
+
+<details id="student_info_details_@Model.Id" open>
+    <summary>
+        <span class="fa fa-graduation-cap"></span>
+        @Model.FirstName @Model.LastName
+    </summary>
+
+    <div class="studentInfoBlock">
+        <div>
+            <span class="fa fa-barcode"></span>
+            <span>@Model.Code</span>
+        </div>
+
+        <div>
+            <span class="fa fa-phone"></span>
+            <span>@Model.Phone</span>
+        </div>
+
+        <div>
+            <span class="fa fa-paper-plane"></span>
+            <span>@Model.Email</span>
+        </div>
+
+        <div>
+            <span class="fa fa-birthday-cake"></span>
+            <span>@Model.BirthDate.ToString("d MMMM yyyy")</span>
+        </div>
+    </div>
+</details>
+
+<div class="studentSectionTitle">
+    Inscriptions
+</div>
+
+@if (Model.Registrations == null || Model.Registrations.Count == 0)
+{
+    <div class="emptyMessage">
+        Aucune inscription.
+    </div>
+}
+else
+{
+    var years = Model.Registrations
+        .Where(r => r.Course != null)
+        .Select(r => r.Year)
+        .Distinct()
+        .OrderByDescending(y => y)
+        .ToList();
+
+    foreach (int year in years)
+    {
+        var registrations = Model.Registrations
+            .Where(r => r.Year == year && r.Course != null)
+            .OrderBy(r => r.Course.Session)
+            .ThenBy(r => r.Course.Code)
+            .ToList();
+
+        if (registrations.Count > 0)
+        {
+            <details id="student_registration_details_@year" open>
+                <summary>@year</summary>
+
+                @foreach (var registration in registrations)
+                {
+                    <div class="registrationLine">
+                        <span class="sessionNumber">[@registration.Course.Session]</span>
+
+                        <a href="@Url.Action("Details", "Courses", new { id = registration.Course.Id })">
+                            @registration.Course.Code @registration.Course.Title
+                        </a>
+                    </div>
+                }
+            </details>
+        }
+    }
+}

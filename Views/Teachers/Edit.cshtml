@@ -1,0 +1,35 @@
+﻿@model Models.Teacher
+
+@{
+    ViewBag.Title = "Modification d'un prof";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Creating = false;
+}
+
+<div class="pageHeader">
+    <div class="pageTitle">
+        <a href="@Url.Action("Index", "Students")" title="Accueil">
+            <span class="mainRedIcon fa fa-user"></span>
+        </a>
+
+        <span>Modification d'un prof</span>
+    </div>
+
+    <div class="pageCommands">
+        <a href="@Url.Action("Details", "Teachers", new { id = Model.Id })" title="Annuler">
+            <span class="icon fa fa-times-square"></span>
+        </a>
+    </div>
+</div>
+@if (TempData["Alert"] != null)
+{
+    <script>
+        alert("@TempData["Alert"]");
+    </script>
+}
+
+@Html.Partial("TeacherForm", Model)
+
+@section Scripts {
+    <script src="~/scripts/selections.js"></script>
+}

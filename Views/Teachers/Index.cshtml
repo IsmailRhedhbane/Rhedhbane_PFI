@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Profs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string searchString = (Session["TeacherSearchString"] ?? "").ToString();
+}
+
+<div class="searchBar">
+    <input type="text"
+           id="teacherSearchString"
+           value="@searchString"
+           placeholder="Recherche..." />
+</div>
+
+<div id="teachersPanel"></div>
+
+@section Scripts {
+    <script>
+        let teachersPanel = null;
+
+        function highlightTeacherSearch() {
+            let text = $("#teacherSearchString").val();
+
+            if (text != undefined && text.length > 0) {
+                $(".teacherCode, .teacherName").each(function () {
+                    highlight(text, this);
+                });
+            }
+        }
+
+        function setTeacherSearch() {
+            $.ajax({
+                url: "@Url.Action("SetSearch", "Teachers")",
+                type: "GET",
+                data: {
+                    searchString: $("#teacherSearchString").val()
+                },
+                success: function () {
+                    teachersPanel.refresh();
+                }
+            });
+        }
+
+        $("#teacherSearchString").on("keyup", function () {
+            setTeacherSearch();
+        });
+
+        teachersPanel = new AutoRefreshedPanel(
+            "teachersPanel",
+            "@Url.Action("GetTeachers", "Teachers")",
+            5,
+            highlightTeacherSearch
+        );
+    </script>
+}

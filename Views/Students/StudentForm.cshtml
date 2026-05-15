@@ -1,0 +1,78 @@
+﻿@model Models.Student
+
+@{
+    bool creating = ViewBag.Creating ?? false;
+    string action = creating ? "Create" : "Edit";
+}
+
+@using (Html.BeginForm(action, "Students", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Code)
+
+    <details id="student_form_details_information" open>
+        <summary>Informations - @Model.Code</summary>
+
+        <fieldset>
+            <legend>Identité</legend>
+
+            <label>Code</label>
+            <input type="text" value="@Model.Code" class="form-control" readonly />
+
+            <label>Prénom</label>
+            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", required = "required" })
+
+            <label>Nom</label>
+            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", required = "required" })
+
+            <label>Date de naissance</label>
+            <input type="date"
+                   name="BirthDate"
+                   value="@Model.BirthDate.ToString("yyyy-MM-dd")"
+                   class="form-control"
+                   required />
+
+            <label>Courriel</label>
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", type = "email", required = "required" })
+
+            <label>Téléphone</label>
+            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", required = "required" })
+        </fieldset>
+    </details>
+
+    if (!creating)
+    {
+        <details id="student_form_details_registrations" open>
+            <summary>Inscriptions - @Models.NextSession.ShortCaption</summary>
+
+            <fieldset>
+                <legend>Cours inscrits</legend>
+
+                @Helper.SelectionLists(
+                    "selectedCoursesId",
+                    (System.Web.Mvc.SelectList)ViewBag.Registrations,
+                    (System.Web.Mvc.SelectList)ViewBag.Courses
+                )
+            </fieldset>
+        </details>
+    }
+
+    <div class="formCommands">
+        <button type="submit" class="roundIconButton" title="Enregistrer">
+            <span class="fa fa-check-circle"></span>
+        </button>
+
+        @if (creating)
+        {
+            <a href="@Url.Action("Index", "Students")" title="Annuler">
+                <span class="icon fa fa-times-circle"></span>
+            </a>
+        }
+        else
+        {
+            <a href="@Url.Action("Details", "Students", new { id = Model.Id })" title="Annuler">
+                <span class="icon fa fa-times-circle"></span>
+            </a>
+        }
+    </div>
+}

@@ -1,0 +1,90 @@
+﻿@model Models.Teacher
+
+@{
+    double yearsOfSeniority = (DateTime.Now - Model.StartDate).TotalDays / 365.25;
+}
+
+<details id="teacher_info_details_@Model.Id" open>
+    <summary>
+        <span class="fa fa-address-card"></span>
+        @Model.FirstName @Model.LastName
+    </summary>
+
+    <div class="teacherInfoBlock">
+        <div>
+            <span class="fa fa-barcode"></span>
+            <span>@Model.Code</span>
+        </div>
+
+        <div>
+            <span class="fa fa-phone"></span>
+            <span>@Model.Phone</span>
+        </div>
+
+        <div>
+            <span class="fa fa-paper-plane"></span>
+            <span>@Model.Email</span>
+        </div>
+
+        <br />
+
+        <div>
+            Embauché le @Model.StartDate.ToString("d MMMM yyyy")
+        </div>
+
+        <div>
+            @yearsOfSeniority.ToString("0.0") ans d'ancienneté
+        </div>
+
+        <div class="teacherSmallAvatar"
+             style="background-image:url('@Url.Content(string.IsNullOrWhiteSpace(Model.Avatar) ? "~/App_Assets/Teachers/no_avatar.png" : Model.Avatar)')">
+        </div>
+    </div>
+</details>
+
+<div class="sectionTitle">
+    Allocations
+</div>
+
+@if (Model.Allocations == null || Model.Allocations.Count == 0)
+{
+    <div class="emptyMessage">
+        Aucune allocation.
+    </div>
+}
+else
+{
+    var years = Model.Allocations
+        .Where(a => a.Course != null)
+        .Select(a => a.Year)
+        .Distinct()
+        .OrderByDescending(y => y)
+        .ToList();
+
+    foreach (int year in years)
+    {
+        var allocations = Model.Allocations
+            .Where(a => a.Year == year && a.Course != null)
+            .OrderBy(a => a.Course.Session)
+            .ThenBy(a => a.Course.Code)
+            .ToList();
+
+        if (allocations.Count > 0)
+        {
+            <details id="teacher_allocation_details_@year" open>
+                <summary>@year</summary>
+
+                @foreach (var allocation in allocations)
+                {
+                    <div class="itemLine">
+                        <span class="sessionNumber">[@allocation.Course.Session]</span>
+
+                        <a href="@Url.Action("Details", "Courses", new { id = allocation.Course.Id })">
+                            @allocation.Course.Code @allocation.Course.Title
+                        </a>
+                    </div>
+                }
+            </details>
+        }
+    }
+}

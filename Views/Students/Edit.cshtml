@@ -1,0 +1,29 @@
+﻿@model Models.Student
+
+@{
+    ViewBag.Title = "Modification d'un étudiant";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Creating = false;
+}
+
+<div class="pageHeader">
+    <div class="pageTitle">
+        <a href="@Url.Action("Index", "Students")" title="Accueil">
+            <span class="mainRedIcon fa fa-user"></span>
+        </a>
+
+        <span>Modification d'un étudiant</span>
+    </div>
+
+    <div class="pageCommands">
+        <a href="@Url.Action("Details", "Students", new { id = Model.Id })" title="Annuler">
+            <span class="icon fa fa-times-square"></span>
+        </a>
+    </div>
+</div>
+
+@Html.Partial("StudentForm", Model)
+
+@section Scripts {
+    <script src="~/scripts/selections.js"></script>
+}
