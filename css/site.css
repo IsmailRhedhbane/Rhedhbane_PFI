@@ -235,7 +235,7 @@ summary {
 }
 
 .StudentListLayout span {
-    margin-right: 10px;
+    margin-right: 0px;
 }
 
 .studentEmail {
@@ -787,7 +787,6 @@ textarea {
 .highlight,
 mark {
     background: yellow;
-    padding: 0;
 }
 
 

@@ -149,6 +149,7 @@
     <Compile Include="WebServices\GeoLocation.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Assets\logo_lio.png" />
     <Content Include="App_Assets\Users\13070465-e361-4d69-9073-06ebeb3c64ad.jpeg" />
     <Content Include="App_Assets\Users\156ab756-729a-4dc9-ae1d-cdda8ccfd00d.jpeg" />
     <Content Include="App_Assets\Users\32705cf0-2e95-4362-bce7-7d77cb8d4b84.jpeg" />
@@ -231,6 +232,7 @@
     <Content Include="Views\Accounts\LoginsJournal.cshtml" />
     <Content Include="Views\Accounts\ManageUsers.cshtml" />
     <Content Include="Views\Accounts\GetUsers.cshtml" />
+    <None Include="Properties\PublishProfiles\RegistrarRhedhbane - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Wikimedia-2026 - Web Deploy.pubxml" />
     <Content Include="Scripts\Gestion420Scripts.js" />
     <Content Include="Views\Students\Create.cshtml" />

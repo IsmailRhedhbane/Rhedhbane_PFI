@@ -30,7 +30,7 @@ function highlight(text, elem) {
             let before = originalText.substring(0, index);
             let match = originalText.substring(index, index + text.length);
             let after = originalText.substring(index + text.length);
-            $(elem).html(before + "<span class='highlight'>" + match + '</span>' + after);
+            $(elem).html(before + "<span class='highlight'>" + match + '</span>' +after);
         }
     }
 }
