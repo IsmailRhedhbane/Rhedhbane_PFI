@@ -33,8 +33,8 @@ function initFormValidation() {
         $(this).attr("pattern", String.raw`(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?$`);
     });
     $(".Phone").each(function () {
-        $(this).attr("pattern", String.raw`^\(\d\d\d\)\s\d\d\d-\d\d\d\d$`);
-        $(this).mask("(999) 999-9999", { autoclear: false });
+        $(this).attr("pattern", String.raw`^\(\d\d\d\)\s\d\d\d-\d\d\d\d(\sposte\s\d{5})?$`);
+        $(this).mask("(999) 999-9999? poste 99999", { autoclear: false });
     });
     $(".Zipcode").each(function () {
         $(this).attr("pattern", String.raw`^[a-zA-Z][0-9]+[a-zA-Z]\s[0-9]+[a-zA-Z][0-9]+$`);
